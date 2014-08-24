@@ -22,7 +22,7 @@ using namespace std;
 #include "stopWatch.h"
 
 static StopWatch globalSW;
-static string groupName = "THE INVINCIBLE FOUR";
+static string groupName = "THE INVICIBLE FOUR";
 
 void processFile(char* ifilename, char* ofilename){
 
@@ -34,7 +34,7 @@ void processFile(char* ifilename, char* ofilename){
 	string outputAns = "Answer of your computation"; // the answer you computed
 
 	ifstream inputFile(ifilename,ios::in);
-	ofstream outputFile(ofilename,ios::out);
+	ofstream outputFile(ofilename,ios::out, ios_base::trunc);
 
 	LongInt currentValue;
 	PointSet myPointSet;
@@ -141,10 +141,10 @@ void processFile(char* ifilename, char* ofilename){
 		else if(!command.compare("AP")){
 			linestream >> numberStr;
 			LongInt p1 = LongInt::LongInt(numberStr.c_str());
-
+			
 			linestream >> numberStr;
 			LongInt p2 = LongInt::LongInt(numberStr.c_str());
-
+			
 			int output = myPointSet.addPoint(p1, p2);
 			ostringstream convert;
 			convert << output;
@@ -205,7 +205,7 @@ void runningExperiment()
 {
 	globalSW.reset();
 	globalSW.resume();
-	processFile("input20.txt", "output.txt");
+	processFile("input1.txt", "output.txt");
 	globalSW.pause();
 }
 
