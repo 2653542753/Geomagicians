@@ -27,7 +27,23 @@ int PointSet::inCircle(int p1Idx, int p2Idx, int p3Idx, int pIdx) {
 	return det1*det2;
 }
 
+int PointSet::sameSide(MyPoint p1, MyPoint p2, MyPoint a, MyPoint b){
+	return signDet2D(b.x-a.x, b.y-a.y, p1.x - a.x, p1.y - a.y)*
+		signDet2D(b.x-a.x, b.y-a.y, p2.x - a.x, p2.y - a.y);
+}
+
 int PointSet::inTri(int p1Idx, int p2Idx, int p3Idx, int pIdx) {
-	return 0;
+	MyPoint a = this->myPoints.at(p1Idx-1);
+	MyPoint b = this->myPoints.at(p2Idx-1);
+	MyPoint c = this->myPoints.at(p3Idx-1);
+	MyPoint p = this->myPoints.at(pIdx-1);
+
+	if(sameSide(p,a,b,c)==1 && sameSide(p,b,a,c)==1 && sameSide(p,c,a,b)==1){
+		return 1;
+	}else if(sameSide(p,a,b,c)==-1 || sameSide(p,b,a,c)==-1 || sameSide(p,c,a,b)==-1) {
+		return -1;
+	}else{
+		return 0;
+	}
 				
 }
