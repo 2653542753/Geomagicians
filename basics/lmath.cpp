@@ -22,7 +22,22 @@ LongInt det3D(LongInt x1, LongInt y1, LongInt w1,
 				  return det;
 }
 
+int signDet4D(LongInt x1, LongInt y1, LongInt w1, LongInt v1,
+			LongInt x2, LongInt y2, LongInt w2, LongInt v2,
+			LongInt x3, LongInt y3, LongInt w3, LongInt v3,
+			LongInt x4, LongInt y4, LongInt w4, LongInt v4){
+				LongInt det = -v1*det3D(x2,y2,w2,x3,y3,w3,x4,y4,w4)
+					+v2*det3D(x1,y1,w1,x3,y3,w3,x4,y4,w4)
+					-v3*det3D(x1,y1,w1,x2,y2,w2,x4,y4,w4)
+					+v4*det3D(x1,y1,w1,x2,y2,w2,x3,y3,w3);
+				return det.sign();
+}
+
 int signDet2D(LongInt ax, LongInt ay, LongInt bx, LongInt by){
 	LongInt det = ax*by - ay*bx;
 	return det.sign();
+}
+
+LongInt square(LongInt x){
+	return x*x;
 }
